@@ -1,0 +1,8 @@
+---
+# vars file for nginx-deployment-role
+nginx_document_root: /var/www/html
+nginx_server_name: mynginx.local
+allowed_ips:
+  - 192.168.1.50
+  - 192.168.1.60
+  - 192.168.1.70

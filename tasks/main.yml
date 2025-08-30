@@ -1,0 +1,22 @@
+---
+# tasks file for nginx-deployment-role
+- name: Install NGINX WEB Server
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+
+- name: Deploy NGINX Config Tempate
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/default  # This PATH used by NGINX for reading the Sites Configuration [ This PATH is only for the NGINX WEB Server ].
+    mode: '0644'
+    owner: root
+    group: root
+  notify: Restart NGINX
+
+- name: Start and Enable NGINX
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
